@@ -1,0 +1,20 @@
+{
+  "name": "cypress-ui-saucedemo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cypress UI-only framework for the Sauce Demo application with Page Objects and multiple tests.",
+  "scripts": {
+    "prepare": "husky install || true",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "test:smoke": "cypress run --env grepTags=@smoke",
+    "test:regression": "cypress run --env grepTags=@regression"
+  },
+  "devDependencies": {
+    "@cypress/grep": "^5.0.0",
+    "cypress": "^13.13.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-cypress": "^2.15.1",
+    "prettier": "^3.3.3"
+  }
+}
