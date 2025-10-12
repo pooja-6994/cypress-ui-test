@@ -7,7 +7,8 @@ export class LoginPage {
   };
 
   visit() {
-    cy.visit('/');
+    cy.request('GET', 'https://www.saucedemo.com/').its('status').should('eq', 200)
+    cy.visit('/')
   }
 
   login(user, pass) {

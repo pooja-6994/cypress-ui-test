@@ -1,8 +1,10 @@
 // cypress/support/e2e.js
-
-// ✅ correct: named export
 import { register as registerCypressGrep } from '@cypress/grep'
 registerCypressGrep()
 
-// then load your commands
+// global stub to avoid load hangs
+before(() => {
+  cy.intercept('POST', /events\.backtrace\.io\/api\/.*-events\/submit.*/, { statusCode: 204, body: {} })
+})
+
 import './commands'
