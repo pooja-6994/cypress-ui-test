@@ -1,10 +1,10 @@
-# Cypress UI Framework – Sauce Demo
+# Cypress UI Framework – CURA Healthcare
 
-A clean, **UI-only** Cypress framework targeted at the public **Sauce Demo** site.  
-It follows best practices: Page Objects, tags with `cypress-grep`, retries, and CI.
+A clean, **UI-only** Cypress framework pointed at the public **CURA Healthcare Service** demo app.  
+It showcases Page Objects, tagging with `cypress-grep`, retries, sessions, and CI.
 
-- Target app: https://www.saucedemo.com
-- Standard creds: `standard_user` / `secret_sauce`
+- Target app: https://katalon-demo-cura.herokuapp.com
+- Standard creds: `John Doe` / `ThisIsNotAPassword`
 
 ## Quick start
 ```bash
@@ -23,16 +23,16 @@ cypress/
       login_success.cy.js
       login_error.cy.js
       logout.cy.js
-    cart/
-      add_remove_cart.cy.js
-      sort_products.cy.js
-    checkout/
-      checkout_smoke.cy.js
+      navigation.cy.js
+    appointments/
+      book_appointment.cy.js
+      appointment_validation.cy.js
+      appointment_history.cy.js
+      facility_program.cy.js
   pages/
     LoginPage.js
-    InventoryPage.js
-    CartPage.js
-    CheckoutPage.js
+    AppointmentPage.js
+    ConfirmationPage.js
   support/
     commands.js
     e2e.js
@@ -49,5 +49,5 @@ npx cypress run --env grep=login
 ```
 
 ## Notes
-- This repo is **UI-first**: no network stubbing; pure user flows.
-- Uses robust `data-test` selectors provided by the app.
+- This repo is **UI-first**: pure user flows; network is only used for availability checks.
+- Uses stable element IDs exposed by the CURA demo.

@@ -1,10 +1,31 @@
+const performLogin = (user, pass) => {
+  cy.visit('/');
+  cy.get('#btn-make-appointment').click();
+  cy.get('#txt-username').clear().type(user);
+  cy.get('#txt-password').clear().type(pass, { log: false });
+  cy.get('#btn-login').click();
+  cy.url().should('include', '#appointment');
+}
 
-Cypress.Commands.add('login', (user = 'standard_user', pass = 'secret_sauce') => {
-  cy.session([user], () => {
-    cy.visit('/');
-    cy.get('[data-test="username"]').type(user);
-    cy.get('[data-test="password"]').type(pass, { log: false });
-    cy.get('[data-test="login-button"]').click();
-    cy.contains('.title', /products/i, { timeout: 10000 }).should('be.visible');
+Cypress.Commands.add('login', (user = 'John Doe', pass = 'ThisIsNotAPassword') => {
+  cy.session([user, pass], () => {
+    performLogin(user, pass);
   });
+
+  const ensureAppointmentPage = () => {
+    cy.visit('/');
+    cy.get('body').then(($body) => {
+      if ($body.find('#btn-login').length) {
+        performLogin(user, pass);
+        return;
+      }
+
+      if ($body.find('#btn-make-appointment').length) {
+        cy.get('#btn-make-appointment').click();
+      }
+    });
+    cy.contains('h2', 'Make Appointment', { timeout: 10000 }).should('be.visible');
+  };
+
+  ensureAppointmentPage();
 });
