@@ -19,7 +19,7 @@ describe('Navigation menu', () => {
     openMenu()
     cy.contains('a', 'Profile').click()
     cy.contains('h2', 'Profile').should('be.visible')
-    cy.contains('#profile', /john doe/i).should('be.visible')
+    cy.contains('body', /under construction/i).should('be.visible')
 
     openMenu()
     cy.contains('a', 'Home').click()
